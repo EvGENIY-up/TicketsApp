@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Ticket from "./components/Ticket";
+import axios from "axios";
+
+  
 
 function App() {
+   const [data, setData] = React.useState([]);
+
+    React.useEffect(()=>{
+        (async () => {
+            const { data } = await axios.get('http://ticketsapp/api/events.php');
+          setData(data.data);
+          console.log(data.data);
+        })();
+    }, []);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="wrapper">
+        {data.map((item, index) => (
+          <Ticket
+            key={index}
+            {...item}
+          />))
+        }
+      </div>
     </div>
   );
 }
