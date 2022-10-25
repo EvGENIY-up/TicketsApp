@@ -8,7 +8,7 @@
 
 1. Перейдите в файл `config.php` путь `backend/includes/config.php`
 2. 2-4 строка, поменяйте поменяйте пользователя, пароль и название бд под себя (По умолчанию в phpMyAdmin user="root" password='', название бд можете не менять, она также есть в папке проекта)
-3. По пути 'backend/TicketsApp.sql' хранится файл бд 'TicketsApp.sql', импортируйте его в phpMyAdmon
+3. По пути `backend/TicketsApp.sql` хранится файл бд `TicketsApp.sql`, импортируйте его в phpMyAdmin
 4. в 6 стройке порт нужно поменять под себя, я использую 3307, по умолчанию в MySql он 3306
 5. Перейдите в файл `initialize.php` путь `backend/core/initialize.php`
 6. На 5 строчке укажите путь к беку под себя, после диска (Я использовал OSPanel как сервер, поэтому папка backend находилась там)
