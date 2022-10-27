@@ -8,7 +8,7 @@ function Ticket({ id, title, description, adult_price, pier_price, dates, kid_pr
   const renderFilteredDates = () => {
     const filteredDates = dates.filter((item, index) =>
       index <= 2
-    ).map((item) => item.time.split('').slice(10).join(''));
+    ).map((item) => item.time.split('').slice(10,-3).join(''));
     return filteredDates;
   }
     return (
@@ -44,6 +44,7 @@ function Ticket({ id, title, description, adult_price, pier_price, dates, kid_pr
               {renderFilteredDates().map((item,index) =>
                 <p key={index} className="travel-time">{item}</p>
               )}
+              {dates.length > 2 ? <p className="travel-time">ещё...</p> : null }
             </div>
             </div>
             <div className="ticket__down-position">

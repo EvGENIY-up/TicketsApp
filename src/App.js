@@ -8,11 +8,15 @@ function App() {
    const [data, setData] = React.useState([]);
 
     React.useEffect(()=>{
-        (async () => {
+        async function fetchData() {
+          try {
             const { data } = await axios.get('http://ticketsapp/api/events.php');
-          setData(data.data);
-          console.log(data.data);
-        })();
+            setData(data.data);
+          } catch (error) {
+            alert('Ошибка при получении контента с сервера')
+          }
+        };
+        fetchData();
     }, []);
   
   return (
