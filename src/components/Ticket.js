@@ -3,14 +3,23 @@ import Modal from "./Modal";
 
 function Ticket({ id, title, description, adult_price, pier_price, dates, kid_price }) {
 
-  const [modalOpened, setModalOpened ] = React.useState(false);
+  const [modalOpened, setModalOpened] = React.useState(false);
+  const [filteredDates, setFilteredDates] = React.useState([]);
+  const [nextDates, setNextDates] = React.useState(dates);
   
+  React.useEffect(() => {
+    renderFilteredDates()
+  }, [])
+
   const renderFilteredDates = () => {
-    const filteredDates = dates.filter((item, index) =>
+    const filtered = nextDates.filter((item, index) =>
       index <= 2
     ).map((item) => item.time.split('').slice(10,-3).join(''));
-    return filteredDates;
+    setFilteredDates(filtered);
+    setNextDates(prev=> prev.slice(3))
   }
+
+
     return (
         <div className="ticket">
           <img src="img/1.png" alt="Принт события" className="ticket__img" />
@@ -41,10 +50,10 @@ function Ticket({ id, title, description, adult_price, pier_price, dates, kid_pr
                 <p className="ticket_setting__title">Ближайший рейс сегодня</p>
               </div>
             <div className="ticket__travel-time">
-              {renderFilteredDates().map((item,index) =>
+              {filteredDates.map((item,index) =>
                 <p key={index} className="travel-time">{item}</p>
               )}
-              {dates.length > 2 ? <p className="travel-time">ещё...</p> : null }
+              {nextDates.length >= 1 ? <p onClick={renderFilteredDates} className="travel-time cu-p">ещё...</p> : null }
             </div>
             </div>
             <div className="ticket__down-position">
@@ -52,7 +61,7 @@ function Ticket({ id, title, description, adult_price, pier_price, dates, kid_pr
                 <h1 className="price-app">{adult_price} Р</h1>
                 <p className="price-pier">{pier_price} Р на причале</p>
               </div>
-              <button onClick={()=> setModalOpened(true)} className="more-button">Подробнее</button>
+              <button onClick={()=> setModalOpened(true)} className="more-button cu-p">Подробнее</button>
             </div>
           </div>
         {modalOpened ? <Modal id={id} setModalOpened={setModalOpened} description={description}  title={title} adult_price={adult_price} kid_price={kid_price} dates={dates}  /> : null}

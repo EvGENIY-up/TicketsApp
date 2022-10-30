@@ -80,6 +80,11 @@
     margin-top: 9px;
 }
 
+.travel-time:hover{
+    background-color: #6BA6FF;
+    color: white;
+}
+
 .ticket__down-position{
     margin: 0 19px;
     display: flex;
@@ -108,6 +113,12 @@
     margin-top: 7px;
     font-weight: 400;
     font-size: 16px;
+}
+
+.more-button:hover{
+    background-color:#ddb61b ;
+    border-color: #3a2f00;  
+    color: white;
 }
 
 .overlay{
@@ -244,6 +255,10 @@
     margin-top: 12px;
     font-weight: 400;
     font-size: 16px;
+}
+
+.cu-p{
+    cursor: pointer;
 }
 
 @media (min-width: 1200px) {
